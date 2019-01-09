@@ -92,7 +92,7 @@ def action_endpoint():
     for action in payload.get('actions', []):
       name = action['name']
       value = action['value']
-      actions[name] = valu
+      actions[name] = value
     return f"Sending tutor to {actions['location']}"
   return ""
 
