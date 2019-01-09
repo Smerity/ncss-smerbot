@@ -46,7 +46,7 @@ def slash_smerlock():
   # Let's see if the user has noted their location
   if 'text' in flask.request.values:
     user_message = flask.request.values['text']
-    match = re.match('I am locked out( in (?P<location>.*))?', user_message)
+    match = re.match('I am locked out( at (?P<location>.*))?', user_message)
     if match and match.group('location'):
         location = match.group('location')
   #
