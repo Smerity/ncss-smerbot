@@ -132,7 +132,7 @@ def action_endpoint():
       name = action['name']
       value = action['value']
       actions[name] = value
-    send_message(CHANNEL, '(Pretend we sent this to a different channel such as #lockedout) Oi! Student is locked out!')
+    send_message(CHANNEL, f'(Pretend we sent this to a different channel such as #lockedout) Oi! Student is locked out at {actions['location']}!')
     return f"Sending a tutor to {actions['location']} now!"
   return ""
 
