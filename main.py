@@ -7,7 +7,7 @@ state = []
 def hello_world():
   return 'Hello World v0.1'
 
-@app.route('/slack/slash/zah')
+@app.route('/slack/slash/zah', methods=['POST'])
 def slash_zah():
   print(request.form)
 
