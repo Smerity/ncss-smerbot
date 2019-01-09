@@ -17,6 +17,8 @@ def slash_zah():
   return '... butzah!'
   # or with a JSON response
   attachments = [{'text': 'Zah butzah is a game from when NCSS ran on Z80 CPUs'}]
+  if 'text' in flask.request.form:
+      attachments.append(f"... and you said {flask.request.form['text']}"])
   return flask.jsonify({'text': '... butzah!', 'attachments': attachments})
 
 if __name__ == '__main__':
