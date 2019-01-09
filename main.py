@@ -16,9 +16,12 @@ def slash_zah():
   # You can reply with plain text
   return '... butzah!'
   # or with a JSON response
+  resp =
+  # If you want to see the command as well as the reply, set the response type
+  resp['response_type'] = 'in_channel'
   attachments = [{'text': 'Zah butzah is a game from when NCSS ran on Z80 CPUs'}]
   if 'text' in flask.request.form:
-      attachments.append(f"... and you said {flask.request.form['text']}"])
+      attachments.append(f"... and you said {flask.request.form['text']}")
   return flask.jsonify({'text': '... butzah!', 'attachments': attachments})
 
 if __name__ == '__main__':
