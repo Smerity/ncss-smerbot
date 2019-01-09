@@ -1,5 +1,5 @@
-from flask import Flask
-app = Flask(__name__)
+import flask
+app = flask.Flask(__name__)
 
 state = []
 
@@ -9,7 +9,7 @@ def hello_world():
 
 @app.route('/slack/slash/zah', methods=['POST'])
 def slash_zah():
-  print(request.form)
+  print(flask.request.form)
 
 if __name__ == '__main__':
   app.run()
