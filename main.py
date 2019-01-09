@@ -2,14 +2,19 @@ import os
 import re
 
 import flask
+import requests
+
 app = flask.Flask(__name__)
 
 TOKEN = os.environ.get('SLACK_TOKEN')
-print(f"Loaded token {TOKEN} (though you shouldn't do this in prod)")
 
 @app.route('/')
 def hello_world():
   return 'Hello World v0.1'
+
+def send_message(channel, msg):
+  params = {'token': TOKEN, 'channel': channel, 'text': msg}
+  r = requests.post('https://slack.com/api/chat.postMessage', params=params)
 
 @app.route('/slack/slash/zah', methods=['POST'])
 def slash_zah():
@@ -95,6 +100,7 @@ def action_endpoint():
       name = action['name']
       value = action['value']
       actions[name] = value
+    send_message('smerbot', '(Pretend we sent this to a different channel such as #lockedout) Oi! Student is locked out!')
     return f"Sending a tutor to {actions['location']} now!"
   return ""
 
