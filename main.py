@@ -23,8 +23,8 @@ def slash_zah():
   attachments = [{'text': 'Zah butzah is a game from when NCSS ran on Z80 CPUs'}]
   if 'text' in flask.request.values:
     user_command = flask.request.values['text']
-    attach = {'text': f'... and you said "{user_command}"'}
-    attachments.append()
+    msg = {'text': f'... and you said "{user_command}"'}
+    attachments.append(msg)
   resp['attachments'] = attachments
   print(resp)
   return flask.jsonify(resp)
