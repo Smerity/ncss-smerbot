@@ -53,7 +53,7 @@ def slash_smerlock():
   resp = {}
   resp['response_type'] = 'in_channel'
   if location:
-    resp = {'text': "You're locked out in {location}. Finding someone to help you now!"}
+    resp = {'text': f"So you're locked out at {location}? We're finding someone to help you now!"}
   if not location:
     resp = {'text': 'Where are you locked out?'}
     location_buttons = {
