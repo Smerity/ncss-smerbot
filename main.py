@@ -71,5 +71,9 @@ def slash_smerlock():
   resp['attachments'] = attachments
   return flask.jsonify(resp)
 
+@app.route('/slack/action', methods=['POST'])
+def action_endpoint():
+  print('Action received:', flask.request.values)
+
 if __name__ == '__main__':
   app.run()
