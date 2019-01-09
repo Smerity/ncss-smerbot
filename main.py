@@ -22,7 +22,8 @@ def slash_zah():
   # You can also add attachments
   attachments = [{'text': 'Zah butzah is a game from when NCSS ran on Z80 CPUs'}]
   if 'text' in flask.request.values:
-    attach = {'text': f'... and you said "{flask.request.values['text']}"'}
+    user_command = flask.request.values['text']
+    attach = {'text': f'... and you said "{user_command}"'}
     attachments.append()
   resp['attachments'] = attachments
   print(resp)
