@@ -22,6 +22,7 @@ def send_message(channel, msg, **kwargs):
 @app.route('/poke')
 def poke():
   send_message(CHANNEL, 'Poke from the web')
+  return 'Your channel should have a poke from the web'
 
 @app.route('/flightexample')
 def flightexample():
@@ -45,7 +46,7 @@ def flightexample():
     }
   ]
   send_message(CHANNEL, "Want to book a flight?", attachments=attachments)
-  return 'Your Slack channel should '
+  return 'Your Slack channel should have a flight message with two buttons to two airlines'
 
 @app.route('/slack/slash/zah', methods=['POST'])
 def slash_zah():
