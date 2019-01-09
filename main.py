@@ -11,7 +11,7 @@ def hello_world():
 def slash_zah():
   # If you print something out it'll appear in
   # https://dashboard.heroku.com/apps/smerbot/logs
-  print(flask.request.form)
+  print(flask.request.values)
   # For https://api.slack.com/slash-commands "Sending an immediate response"
   # You can reply with plain text
   #return '... butzah!'
@@ -21,10 +21,10 @@ def slash_zah():
   resp['response_type'] = 'in_channel'
   # You can also add attachments
   attachments = [{'text': 'Zah butzah is a game from when NCSS ran on Z80 CPUs'}]
-  if 'text' in flask.request.form:
-    attachments.append(f"... and you said {flask.request.form['text']}")
+  if 'text' in flask.request.values:
+    attachments.append(f"... and you said {flask.request.values['text']}")
   resp['attachments'] = attachments
-  print(flask.jsonify(resp))
+  print(resp)
   return flask.jsonify(resp)
 
 if __name__ == '__main__':
