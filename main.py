@@ -14,7 +14,7 @@ def slash_zah():
   print(flask.request.form)
   # For https://api.slack.com/slash-commands "Sending an immediate response"
   # You can reply with plain text
-  return '... butzah!'
+  #return '... butzah!'
   # or with a JSON response
   resp = {'text': '... butzah!'}
   # If you want to see the command as well as the reply, set the response type
