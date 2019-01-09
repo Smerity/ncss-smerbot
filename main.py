@@ -3,7 +3,8 @@ import re
 import flask
 app = flask.Flask(__name__)
 
-state = []
+TOKEN = os.environ.get('SLACK_TOKEN')
+print(f"Loaded token {TOKEN} (though you shouldn't do this in prod)")
 
 @app.route('/')
 def hello_world():
@@ -93,7 +94,7 @@ def action_endpoint():
       name = action['name']
       value = action['value']
       actions[name] = value
-    return f"Sending tutor to {actions['location']}"
+    return f"Sending a tutor to {actions['location']} now!"
   return ""
 
 if __name__ == '__main__':
