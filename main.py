@@ -61,10 +61,10 @@ def slash_smerlock():
       'text': 'Choose a location',
       'fallback': "If you can't select a location the helper will message you",
       "actions": [
-        {'name': 'location', 'text': 'Main Building', 'type': 'button', 'value': 'main'},
-        {'name': 'location', 'text': 'ABS', 'type': 'button', 'value': 'abs'},
-        {'name': 'location', 'text': "Women's College", 'type': 'button', 'value': 'womens'},
-        {'name': 'location', 'text': 'SIT', 'type': 'button', 'value': 'sit'},
+        {'name': 'location', 'text': 'Main Building', 'type': 'button', 'value': 'Main Building'},
+        {'name': 'location', 'text': 'ABS', 'type': 'button', 'value': 'ABS'},
+        {'name': 'location', 'text': "Women's College", 'type': 'button', 'value': "Women's College"},
+        {'name': 'location', 'text': 'SIT', 'type': 'button', 'value': 'SIT'},
       ]
     }
     attachments.append(location_buttons)
