@@ -71,9 +71,13 @@ def slash_smerlock():
   resp['attachments'] = attachments
   return flask.jsonify(resp)
 
-@app.route('/slack/action', methods=['POST'])
+@app.route('/slack/action-endpoint', methods=['POST'])
 def action_endpoint():
   print('Action received:', flask.request.values)
+  # Your response must be a 200
+  # Responding immediately with JSON will replace the current message
+  # You can create a new message by setting replace_original to false
+  return ""
 
 if __name__ == '__main__':
   app.run()
