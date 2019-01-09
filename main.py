@@ -13,13 +13,39 @@ CHANNEL = 'smerbot'
 def hello_world():
   return 'Hello World v0.1'
 
-def send_message(channel, msg):
-  params = {'token': TOKEN, 'channel': channel, 'text': msg}
+def send_message(channel, msg, **kwargs):
+  params = {'token': TOKEN, 'channel': channel, 'text': msg, **kwargs}
+  # For some more complex params, primarily attachments, they must be JSON encoded
+  params['attachments'] = flask.json.dumps(params.get('attachments', []))
   r = requests.post('https://slack.com/api/chat.postMessage', params=params)
 
 @app.route('/poke')
 def poke():
-  send_message(CHANNEL, 'From the web: Poke')
+  send_message(CHANNEL, 'Poke from the web')
+
+@app.route('/flightexample')
+def flightexample():
+  attachments = [
+    {
+      "fallback": "Navigate and book on Qantas or Jetstar directly",
+      "actions": [
+        {
+          "type": "button",
+          "text": "Book on Qantas 🛫",
+          "url": "https://www.qantas.com/",
+          "style": "primary"
+        },
+        {
+          "type": "button",
+          "text": "Book on Jetstar ✨",
+          "url": "https://www.jetstar.com/",
+          "style": "danger"
+        }
+      ]
+    }
+  ]
+  send_message(CHANNEL, "Want to book a flight?", attachments=attachments)
+  return 'Your Slack channel should '
 
 @app.route('/slack/slash/zah', methods=['POST'])
 def slash_zah():
@@ -60,7 +86,7 @@ def slash_smerlock():
     user_message = flask.request.values['text']
     match = re.match('I am locked out( at (?P<location>.*))?', user_message)
     if match and match.group('location'):
-        location = match.group('location')
+      location = match.group('location')
   #
   resp = {}
   resp['response_type'] = 'in_channel'
@@ -74,9 +100,9 @@ def slash_smerlock():
       'fallback': "If you can't select a location the helper will message you",
       "actions": [
         {'name': 'location', 'text': 'Main Building', 'type': 'button', 'value': 'Main Building'},
-        {'name': 'location', 'text': 'ABS', 'type': 'button', 'value': 'ABS'},
-        {'name': 'location', 'text': "Women's College", 'type': 'button', 'value': "Women's College"},
-        {'name': 'location', 'text': 'SIT', 'type': 'button', 'value': 'SIT'},
+        {'name': 'location', 'text': 'Langley', 'type': 'button', 'value': 'Langley'},
+        {'name': 'location', 'text': 'Williams', 'type': 'button', 'value': 'Williams'},
+        {'name': 'location', 'text': 'Reid', 'type': 'button', 'value': 'Reid'},
       ]
     }
     attachments.append(location_buttons)
