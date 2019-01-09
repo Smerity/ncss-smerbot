@@ -24,6 +24,7 @@ def slash_zah():
   if 'text' in flask.request.form:
     attachments.append(f"... and you said {flask.request.form['text']}")
   resp['attachments'] = attachments
+  print(flask.jsonify(resp))
   return flask.jsonify(resp)
 
 if __name__ == '__main__':
