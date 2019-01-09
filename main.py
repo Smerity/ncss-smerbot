@@ -86,6 +86,7 @@ def action_endpoint():
   # Honestly I don't know if there is anything where it replies with multiple
   # If it does I don't know how you respond with JSON
   payload = flask.request.values['payload']
+  print('Payload:', payload)
   callback = payload['callback_id']
   if callback == 'lockout_location':
     actions = {}
